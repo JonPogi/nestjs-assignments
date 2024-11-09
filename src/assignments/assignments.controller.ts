@@ -3,21 +3,18 @@ import { Controller, Get, Param } from '@nestjs/common';
 
 @Controller('assignments')
 export class AssignmentsController {
-    @Get('prime/:number')
-  checkPrime(@Param('number') number: number): { isPrime: boolean } {
-    // Convert the input number to an integer
-    const num = parseInt(number.toString(), 10);
 
-    // Check for prime number
-    if (num <= 1) return { isPrime: false }; // Numbers less than 2 are not prime
-
-    for (let i = 2; i <= Math.sqrt(num); i++) {
-      if (num % i === 0) {
-        return { isPrime: false };
-      }
+  // Factorial Calculator Endpoint
+  @Get('factorial/:number')
+  getFactorial(@Param('number') number: string): { factorial: number } {
+    const num = parseInt(number, 10);
+    if (isNaN(num) || num < 0) {
+      return { factorial: -1 };  // Return -1 for invalid input
     }
-
-    return { isPrime: true };
+    let result = 1;
+    for (let i = 1; i <= num; i++) {
+      result *= i;
+    }
+    return { factorial: result };
   }
 }
-
