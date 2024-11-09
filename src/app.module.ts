@@ -1,11 +1,10 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { AssignmentsController } from './assignments/assignments.controller';
+import { AssignmentsModule } from './assignments/assignments.module'; // Import the assignments module
 
 @Module({
-  imports: [],
-  controllers: [AppController, AssignmentsController],
-  providers: [AppService],
+  imports: [AssignmentsModule], // Register the assignments module here
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
